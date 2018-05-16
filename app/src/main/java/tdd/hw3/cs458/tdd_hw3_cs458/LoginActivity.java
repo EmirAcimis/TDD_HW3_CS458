@@ -43,8 +43,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user != null){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class); //REFACTOR CODE
+                    startActivity(intent); //REFACTOR CODE
                     finish();
                     return;
                 }
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 email = mEmail.getText().toString();
                 password = mPassword.getText().toString();
-                signIn(email,password);
+                signIn(email,password); //REFACTOR CODE
 
             }
         });
@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Methods For Login
+    //REFACTOR METHOD
     public boolean signIn(String email, String password){
 
         if(isEmailValid(email) && !email.equals("") && !password.equals("") && isPasswordValid(password)){
@@ -91,10 +92,10 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(!task.isSuccessful()){
-                        //Toast.makeText(LoginActivity.this, "Email or Password is Incorrect",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, "Email or Password is Incorrect",Toast.LENGTH_SHORT).show(); REFACTOR CODE
                     }
                     else{
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class)); //REFACTOR CODE
                         finish();
                         return;
                     }
@@ -103,11 +104,12 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
         else{
-            //Toast.makeText(LoginActivity.this, "Email or Password is Incorrect",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LoginActivity.this, "Email or Password is Incorrect",Toast.LENGTH_SHORT).show(); REFACTOR CODE
             return false;
         }
     }
 
+    //REFACTOR CODE
     public boolean isEmailValid(String email){
         if(!email.equals("")){
             if(EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
@@ -122,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-
+    //REFACTOR METHOD
     public boolean isPasswordValid(String password){
         if(password.length() == 6){
             return true;
@@ -131,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
     }
+    //REFACTOR METHOD
     public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +

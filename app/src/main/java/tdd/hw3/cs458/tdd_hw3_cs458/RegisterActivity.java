@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-
+        //REFACTOR METHOD
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         };
-
+        //REFACTOR METHOD
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String age = mAge.getText().toString();
                 final String gender = mGender.getText().toString();
                 final String city = mCity.getText().toString();
-                systemRegister(email, password,name, age, gender, city);
+                systemRegister(email, password,name, age, gender, city); //REFACTOR CODE
 
 
             }
@@ -86,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.removeAuthStateListener(mAuthStateListener);
     }
     ///////////////////////////
+    //REFACTOR METHOD
     public boolean systemRegister(final String email, final String password, final String name, final String age, final String gender, final String city) {
 
         if((email.equals("") || password.equals("") || name.equals("")|| age.equals("") || gender.equals("")|| city.equals("")) && !isEmailValid(email) && !isPasswordValid(password) && !isGenderValid(gender)){
@@ -111,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 ///////////////////////////////////////
+    //REFACTOR METHOD
     public boolean isEmailValid(String email){
         if(!email.equals("")){
             if(EMAIL_ADDRESS_PATTERN.matcher(email).matches()){
@@ -125,6 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
     }
+    //REFACTOR METHOD
     public boolean isPasswordValid(String password){
         if(password.length() == 6){
             return true;
@@ -133,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
     }
-
+    //REFACTOR METHOD
     public boolean isGenderValid(String gender) {
         if(gender.toUpperCase().equals("MALE") || gender.toUpperCase().equals("FEMALE")){
             return true;
@@ -142,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
     }
-
+    //REFACTOR METHOD
     public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
