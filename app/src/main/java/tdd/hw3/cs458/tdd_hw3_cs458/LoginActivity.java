@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mEmail, mPassword;
-    private Button mLogin, mRegisterButton;
+    private Button mLogin, mRegisterButton, mGoogle, mFacebook, mTwitter,mInstagram, mGithub;
     private String email, password;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -32,6 +32,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
+
+        mGoogle = (Button) findViewById(R.id.googleButton);
+        mFacebook = (Button) findViewById(R.id.facebookButton);
+        mTwitter = (Button) findViewById(R.id.twitterButton);
+        mInstagram = (Button) findViewById(R.id.instagramButton);
+        mGithub = (Button) findViewById(R.id.githubButton);
 
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
@@ -67,6 +73,52 @@ public class LoginActivity extends AppCompatActivity {
                 password = mPassword.getText().toString();
                 signIn(email,password); //REFACTOR CODE
 
+            }
+        });
+
+        //REFACTOR METHOD
+        mGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(GoogleSignIn_Login()){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+            }
+        });
+        //REFACTOR METHOD
+        mFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(FacebookSignIn_Login()){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+            }
+        });
+        //REFACTOR METHOD
+        mTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TwitterSignIn_Login()){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+            }
+        });
+        //REFACTOR METHOD
+        mInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(InstagramSignIn_Login()){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+            }
+        });
+        //REFACTOR METHOD
+        mGithub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(GitHubSignIn_Login()){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
             }
         });
     }
@@ -143,4 +195,29 @@ public class LoginActivity extends AppCompatActivity {
                     "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                     ")+"
     );
+
+    //REFACTOR METHOD
+    public boolean GoogleSignIn_Login() {
+        return true;
+    }
+
+    //REFACTOR METHOD
+    public boolean FacebookSignIn_Login() {
+        return true;
+    }
+
+    //REFACTOR METHOD
+    public boolean InstagramSignIn_Login() {
+        return true;
+    }
+
+    //REFACTOR METHOD
+    public boolean TwitterSignIn_Login() {
+        return true;
+    }
+
+    //REFACTOR METHOD
+    public boolean GitHubSignIn_Login() {
+        return true;
+    }
 }
